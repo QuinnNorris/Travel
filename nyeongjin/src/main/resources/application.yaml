@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.94.210.149:3306/spring
+    username: root
+    password: a13579000
+
+mybatis:
+  type-aliases-package: com.nyeong.entity
