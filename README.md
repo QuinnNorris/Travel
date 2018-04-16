@@ -11,3 +11,4 @@
 6. 每个Entity都需要加toString方法，便于出现问题时打印排查
 7. 如果出现多表联合查询，使用entityVo，禁止在entity中直接添加属性
 8. 多项数据库操作前，必须在service方法前使用Transactional确保事务能够回滚
+9. RESTful 写文档
