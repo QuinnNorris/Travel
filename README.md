@@ -1,1 +1,10 @@
 # Travel
+
+不使用Valid，保证Entity的简便性
+使用GetMapping，PostMapping等代替RequestMapping
+用AOP概念，进行必须的前置测试
+告警使用log4j排查问题
+数据库字段和entity字段必须相同，保持数据的一致性，避免使用Result反复修改结果集
+每个Entity都需要加toString方法，便于出现问题时打印排查
+如果出现多表联合查询，使用entityVo，禁止在entity中直接添加属性
+多项数据库操作前，必须在service方法前使用Transactional确保事务能够回滚
