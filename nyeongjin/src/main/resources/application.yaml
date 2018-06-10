@@ -2,10 +2,16 @@ spring:
   profiles:
     active: dev
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.94.210.149:3306/spring
-    username: root
-    password: a13579000
-
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://101.132.243.44:5432/tripin?useAffectedRows=true
+    username: postgres
+    password: tripin
+    hikari:
+      maxLifetime: 1765000  #一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒以上
+      maximumPoolSize: 15   #连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
+  http:
+      encoding:
+        charset: UTF-8
+        force: true
 mybatis:
   type-aliases-package: com.nyeong.entity

@@ -12,7 +12,6 @@ public class BaseJson {
 
     private String errorCode;
     private Object object;
-    private Object beanObject;
 
     public BaseJson() {
     }
@@ -41,11 +40,4 @@ public class BaseJson {
         this.object = object;
     }
 
-    public Object getBeanObject() {
-        return beanObject;
-    }
-
-    public void setBeanObject(Object beanObject) {
-        this.beanObject = beanObject;
-    }
 }

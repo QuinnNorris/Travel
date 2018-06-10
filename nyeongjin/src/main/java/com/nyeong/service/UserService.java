@@ -21,12 +21,15 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    private static final Logger logger = LoggerFactory.getLogger("com.service.UserService");
+    private static final Logger logger = LoggerFactory.getLogger(UserMapper.class);
 
     @Transactional
     public String getUserMessage(){
         logger.info("in getUserMessage.");
         return userMapper.getOne(1).toString();
     }
+
+    //javabean
+
 
 }

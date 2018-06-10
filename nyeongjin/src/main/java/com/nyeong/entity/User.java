@@ -1,5 +1,7 @@
 package com.nyeong.entity;
 
+import java.io.Serializable;
+
 /**
  * Title:  User
  * Description: 数据库表实例化 user
@@ -9,7 +11,7 @@ package com.nyeong.entity;
  * @Version: 1.0
  **/
 
-public class User {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -17,9 +19,7 @@ public class User {
     private String username;
     private String password;
 
-    public User() {
-
-    }
+    public User() {}
 
     public int getId() {
         return id;
