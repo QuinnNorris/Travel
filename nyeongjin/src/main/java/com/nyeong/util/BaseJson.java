@@ -28,16 +28,18 @@ public class BaseJson {
         return errorCode;
     }
 
-    public void setErrorCode(String errorCode) {
+    public BaseJson setErrorCode(String errorCode) {
         this.errorCode = errorCode;
+        return this;
     }
 
     public Object getObject() {
         return object;
     }
 
-    public void setObject(Object object) {
+    public BaseJson setObject(Object object) {
         this.object = object;
+        return this;
     }
 
 }

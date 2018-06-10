@@ -2,7 +2,7 @@ package com.nyeong.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.tripin.application.enums.UserStatus;
+import com.nyeong.enums.UserStatus;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -33,8 +33,6 @@ public class UserInfo implements Serializable {
 
     private UserStatus userStatus;
 
-    private String nickName;
-
     public UserInfo() {
 
     }
@@ -46,7 +44,6 @@ public class UserInfo implements Serializable {
         this.phone = phone;
         this.email = email;
         this.userStatus = userStatus;
-        this.nickName = nickName;
     }
 
     public UserInfo(String userName, String password, String phone, String email, UserStatus userStatus, String nickName) {
@@ -55,7 +52,6 @@ public class UserInfo implements Serializable {
         this.phone = phone;
         this.email = email;
         this.userStatus = userStatus;
-        this.nickName = nickName;
     }
 
     public static long getSerialVersionUID() {
@@ -110,14 +106,6 @@ public class UserInfo implements Serializable {
         this.userStatus = userStatus;
     }
 
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -128,14 +116,13 @@ public class UserInfo implements Serializable {
                 Objects.equals(getPassword(), userInfo.getPassword()) &&
                 Objects.equals(getPhone(), userInfo.getPhone()) &&
                 Objects.equals(getEmail(), userInfo.getEmail()) &&
-                getUserStatus() == userInfo.getUserStatus() &&
-                Objects.equals(getNickName(), userInfo.getNickName());
+                getUserStatus() == userInfo.getUserStatus();
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getUserID(), getUserName(), getPassword(), getPhone(), getEmail(), getUserStatus(), getNickName());
+        return Objects.hash(getUserID(), getUserName(), getPassword(), getPhone(), getEmail(), getUserStatus());
     }
 
     @Override
@@ -147,7 +134,6 @@ public class UserInfo implements Serializable {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", userStatus=" + userStatus +
-                ", nickName='" + nickName + '\'' +
                 '}';
     }
 }
