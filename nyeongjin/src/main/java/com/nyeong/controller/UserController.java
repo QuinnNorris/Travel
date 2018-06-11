@@ -1,5 +1,6 @@
 package com.nyeong.controller;
 
+import com.nyeong.annotation.Logged;
 import com.nyeong.service.UserService;
 import com.nyeong.util.BaseJson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +29,15 @@ public class UserController {
     //根据 uid 获得用户信息
     @Logged({"id"})
     @GetMapping("/user")
-    public BaseJson getUserMeg(@RequestParam("id")id) {
-        return userService.getUserMessage( id );
+    public BaseJson getUserMeg(@RequestParam("id") int id) {
+        return userService.getUserMsg( id );
     }
 
     //注册用户
     @Logged({"userName", "password", "phone"})
     @PostMapping("/register")
     public BaseJson userRegister(@RequestParam("userName") String userName, @RequestParam("password") String password, @RequestParam("phone") String phone) {
-        return userService.signUpUserMsg( account, password );
+        return userService.signUpUserMsg( userName, password, phone );
     }
 
 
@@ -79,8 +80,6 @@ public class UserController {
 
         return userService.updateUserPassword( userID, oldPassword, newPassword );
     }
-
-
 
 
 }
