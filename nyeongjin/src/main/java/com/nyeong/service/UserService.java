@@ -27,9 +27,8 @@ public class UserService {
 
     /**
      * 根据用户ID获取用户信息
-     *
      * errorCode - 0000(成功)/1001(未找到);
-     * object - User;
+     * object - UserInfo;
      *
      * @return
      */
@@ -43,13 +42,12 @@ public class UserService {
 
     /**
      * 注册用户
-     *
      * errorCode - 0000(成功)/1002(用户名已被他人注册)/1003(此手机号已注册);
      * object - id;
      *
-     * @param userName 用户名
-     * @param password 密码
-     * @param phone    手机号
+     * @param userName
+     * @param password
+     * @param phone
      * @return
      */
     public BaseJson signUpUserMsg(String userName, String password, String phone) {
@@ -57,6 +55,11 @@ public class UserService {
         BaseJson baseJson = new BaseJson();
 
         baseJson.setObject(userInfoMapper.getOneByUserName(userName));
+        if (baseJson.getObject() != null)
+            return baseJson.setObject(null).setErrorCode("1002");
+
+        //用户名不能为某个手机号码
+        baseJson.setObject(userInfoMapper.getOneByUserName(phone));
         if (baseJson.getObject() != null)
             return baseJson.setObject(null).setErrorCode("1002");
 
@@ -76,6 +79,54 @@ public class UserService {
 
     }
 
+    /**
+     * 登录用户
+     * errorCode - 0000(成功)/1004(用户名或密码错误);
+     * object - UserInfo;
+     *
+     * @param account
+     * @param password
+     * @return
+     */
+    public BaseJson userLogin(String account, String password) {
+
+        BaseJson baseJson = new BaseJson();
+
+        baseJson.setObject(userInfoMapper.getOneByUserNameAndPassword(account, password));
+        if (baseJson.getObject() != null)
+            return baseJson.setErrorCode("0000");
+
+        baseJson.setObject(userInfoMapper.getOneByPhoneAndPassword(account, password));
+        if (baseJson.getObject() != null)
+            return baseJson.setErrorCode("0000");
+
+        return baseJson.setErrorCode("1004");
+
+    }
+
+    /**
+     * 更新密码
+     * errorCode - 0000(成功)/1005(旧密码错误);
+     * object - null;
+     *
+     * @param userID
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    public BaseJson updateUserPassword(int userID, String oldPassword, String newPassword) {
+
+        BaseJson baseJson = new BaseJson();
+
+        baseJson.setObject(userInfoMapper.getOneByUserNameAndPassword(userID, oldPassword));
+        if (baseJson.getObject() == null)
+            return baseJson.setErrorCode("1005");
+
+        userInfoMapper.updatePassword(userID, newPassword);
+
+        return baseJson.setObject(null).setErrorCode("0000");
+
+    }
 
 
 }
