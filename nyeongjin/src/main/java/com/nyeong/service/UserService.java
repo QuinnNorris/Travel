@@ -33,10 +33,12 @@ public class UserService {
      * @return
      */
     public BaseJson getUserMsg(int id) {
+
         BaseJson baseJson = new BaseJson().setObject(userInfoMapper.getOne(id));
-        LOGGER.info("find BY selectUserByuserID, id ->" + id);
+
         if (baseJson.getObject() == null)
             return baseJson.setErrorCode("1001");
+
         return baseJson.setErrorCode("0000");
     }
 
@@ -76,7 +78,6 @@ public class UserService {
         int id = userInfoMapper.insert(userInfo);
 
         return baseJson.setObject(id).setErrorCode("0000");
-
     }
 
     /**
@@ -101,7 +102,6 @@ public class UserService {
             return baseJson.setErrorCode("0000");
 
         return baseJson.setErrorCode("1004");
-
     }
 
     /**
@@ -118,15 +118,16 @@ public class UserService {
 
         BaseJson baseJson = new BaseJson();
 
-        baseJson.setObject(userInfoMapper.getOneByUserNameAndPassword(userID, oldPassword));
+        baseJson.setObject(userInfoMapper.getOneByUserIDAndPassword(userID, oldPassword));
         if (baseJson.getObject() == null)
             return baseJson.setErrorCode("1005");
 
         userInfoMapper.updatePassword(userID, newPassword);
 
         return baseJson.setObject(null).setErrorCode("0000");
-
     }
+
+
 
 
 }
