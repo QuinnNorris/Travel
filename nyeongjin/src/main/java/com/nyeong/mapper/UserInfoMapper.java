@@ -90,4 +90,6 @@ public interface UserInfoMapper {
     UserInfo getOneByPhoneAndPassword(String account, String password);
 
     UserInfo getOneByUserIDAndPassword(int userID, String oldPassword);
+
+    int updateEmailByUserId(int userId, String email);
 }

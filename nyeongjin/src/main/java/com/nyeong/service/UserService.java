@@ -188,5 +188,25 @@ public class UserService {
         return baseJson;
     }
 
+    /**
+     * 绑定邮箱
+     * errorCode - 0000(成功)/1001(未找到);
+     * object - null;
+     *
+     * @param userId
+     * @param email
+     * @return
+     */
+    public BaseJson setUserEmail(int userId, String email) {
+
+        BaseJson baseJson = getUserMsg(userId);
+
+        if (baseJson.getErrorCode().equals("1001"))
+            return baseJson;
+
+        userInfoMapper.updateEmailByUserId(userId, email);
+
+        return baseJson.setErrorCode("0000");
+    }
 
 }
