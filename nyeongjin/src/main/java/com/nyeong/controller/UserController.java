@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Version: 1.0
  **/
 
-//todo Logged注解要加么
-
+//todo 修改返回结果，不能返回密码，重新组装
 @RestController
 public class UserController {
 

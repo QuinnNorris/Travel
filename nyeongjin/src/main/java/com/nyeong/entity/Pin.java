@@ -1,6 +1,6 @@
 package com.nyeong.entity;
 
-import com.tripin.application.enums.PinStatus;
+import com.nyeong.enums.PinStatus;
 
 import java.io.Serializable;
 import java.util.Date;

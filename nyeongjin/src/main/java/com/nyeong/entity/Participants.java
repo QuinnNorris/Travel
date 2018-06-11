@@ -1,6 +1,6 @@
 package com.nyeong.entity;
 
-import com.tripin.application.enums.ParticipantAuthorizationType;
+import com.nyeong.enums.ParticipantAuthorizationType;
 
 import java.io.Serializable;
 import java.util.Objects;

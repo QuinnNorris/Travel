@@ -1,6 +1,6 @@
 package com.nyeong.entity;
 
-import com.tripin.application.enums.Transportation;
+import com.nyeong.enums.Transportation;
 
 import java.io.Serializable;
 import java.util.Objects;
