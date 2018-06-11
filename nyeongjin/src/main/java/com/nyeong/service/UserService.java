@@ -1,5 +1,13 @@
 package com.nyeong.service;
 
+import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.IAcsClient;
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
+import com.aliyuncs.exceptions.ClientException;
+import com.aliyuncs.http.MethodType;
+import com.aliyuncs.profile.DefaultProfile;
+import com.aliyuncs.profile.IClientProfile;
 import com.nyeong.entity.UserInfo;
 import com.nyeong.enums.UserStatus;
 import com.nyeong.mapper.UserInfoMapper;
@@ -45,7 +53,7 @@ public class UserService {
     /**
      * 注册用户
      * errorCode - 0000(成功)/1002(用户名已被他人注册)/1003(此手机号已注册);
-     * object - id;
+     * object - Integer - id;
      *
      * @param userName
      * @param password
@@ -127,7 +135,78 @@ public class UserService {
         return baseJson.setObject(null).setErrorCode("0000");
     }
 
+    /**
+     * 验证手机号
+     * errorCode - 0000(成功)/1006(发送失败);
+     * object - String - validateCode(验证码);
+     *
+     * @param phone
+     * @return
+     */
+    public BaseJson validatePhone(String phone) {
 
+        BaseJson baseJson = new BaseJson();
 
+        String validateCode = (int) (Math.random() * 10000) + "";
+        if (validateCode.length() < 4)
+            for (int i = 0; i < 4 - validateCode.length(); i++)
+                validateCode = "0" + validateCode;
+        baseJson.setObject(validateCode);
+
+        System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
+        System.setProperty("sun.net.client.defaultReadTimeout", "10000");
+        final String product = "Dysmsapi";
+        final String domain = "dysmsapi.aliyuncs.com";
+        final String accessKeyId = "LTAIsFHjJXTp7q8J";
+        final String accessKeySecret = "bJVaXVAzgCOYPE3nYZ7f5ZaAhWvdC4";
+        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId,
+                accessKeySecret);
+        try {
+            DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
+        } catch (ClientException e) {
+            e.printStackTrace();
+        }
+
+        IAcsClient acsClient = new DefaultAcsClient(profile);
+        SendSmsRequest request = new SendSmsRequest();
+        request.setMethod(MethodType.POST);
+        request.setPhoneNumbers(phone);
+        request.setSignName("Tripin");
+        request.setTemplateCode("SMS_126345224");
+        request.setTemplateParam("{\"code\":\"" + validateCode + "\"}");
+        request.setOutId("yourOutId");
+        SendSmsResponse sendSmsResponse = null;
+
+        try {
+            sendSmsResponse = acsClient.getAcsResponse(request);
+        } catch (ClientException e) {
+            e.printStackTrace();
+        }
+
+        if (sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK")) baseJson.setErrorCode("0000");
+        else baseJson.setErrorCode("1006");
+        return baseJson;
+    }
+
+    /**
+     * 绑定邮箱
+     * errorCode - 0000(成功)/1001(未找到);
+     * object - null;
+     *
+     * @param userId
+     * @param email
+     * @return
+     */
+    public BaseJson setUserEmail(int userId, String email) {
+
+        BaseJson baseJson = getUserMsg(userId);
+
+        if (baseJson.getErrorCode().equals("1001"))
+            return baseJson;
+
+        userInfoMapper.updateEmailByUserId(userId, email);
+
+        return baseJson.setErrorCode("0000");
+    }
 
 }
