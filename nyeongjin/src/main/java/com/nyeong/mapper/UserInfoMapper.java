@@ -85,7 +85,9 @@ public interface UserInfoMapper {
     @Delete("DELETE FROM \"userInfo\" WHERE \"userID\" =#{userID}")
     int delete(@Param("userID") Integer userID);
 
-    UserInfo getOneByUserNameAndPassword(int userID, String oldPassword);
+    UserInfo getOneByUserNameAndPassword(String userName, String oldPassword);
 
     UserInfo getOneByPhoneAndPassword(String account, String password);
+
+    UserInfo getOneByUserIDAndPassword(int userID, String oldPassword);
 }
