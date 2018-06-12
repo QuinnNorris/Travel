@@ -61,19 +61,14 @@
 			<scope>runtime</scope>
 		</dependency>
 
-
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-collections4</artifactId>
-			<version>4.0.1</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/src/main/resources/lib/collections-generic-4.0.1.jar</systemPath>
 		</dependency>
 
 		<dependency>
