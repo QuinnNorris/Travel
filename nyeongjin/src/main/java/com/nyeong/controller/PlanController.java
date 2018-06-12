@@ -2,7 +2,6 @@ package com.nyeong.controller;
 
 import com.nyeong.entity.Plan;
 import com.nyeong.service.PlanService;
-import com.nyeong.service.planService;
 import com.nyeong.util.BaseJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,15 +21,10 @@ public class PlanController {
         return new BaseJson();
     }
 
-    @GetMapping("query/routes")
-    public BaseJson getRoutesByID(@RequestParam("planID") Integer planID) {
-        return new BaseJson();
-    }
-
 
     @PostMapping("/add")
     public BaseJson add(Plan plan) {
-       return planService.addPlan( plan );
+        return planService.addPlan( plan );
     }
 
     @PostMapping("/delete")
@@ -42,6 +36,17 @@ public class PlanController {
     @PostMapping("/update")
     public BaseJson update(Plan plan) {
         return planService.update( plan );
+    }
+
+    @GetMapping("query/routes")
+    public BaseJson getRoutesByID(@RequestParam("planID") Integer planID) {
+        return new BaseJson();
+    }
+
+
+    @GetMapping("/pins")
+    public BaseJson getPinsByPlanID(@RequestParam("planid") Integer planID) {
+        return planService.getPinsByPlanID( planID );
     }
 
 

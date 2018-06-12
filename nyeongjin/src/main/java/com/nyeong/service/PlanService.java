@@ -43,4 +43,31 @@ public class PlanService {
         return baseJson;
     }
 
+
+    @Transactional
+    public BaseJson addPlan(Plan plan) {
+        BaseJson baseJson = new BaseJson();
+
+        return baseJson;
+    }
+
+    @Transactional
+    public BaseJson deleteById(Integer id) {
+        BaseJson baseJson = new BaseJson();
+
+        return baseJson;
+    }
+
+    @Transactional
+    public BaseJson update(Plan plan) {
+        BaseJson baseJson = new BaseJson();
+        return baseJson;
+    }
+
+    @Transactional
+    public BaseJson getPinsByPlanID(Integer id) {
+        BaseJson baseJson = new BaseJson();
+        return baseJson;
+    }
+
 }
