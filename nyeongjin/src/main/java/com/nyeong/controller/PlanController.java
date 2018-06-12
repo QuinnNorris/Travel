@@ -1,13 +1,11 @@
 package com.nyeong.controller;
 
+import com.nyeong.entity.Plan;
 import com.nyeong.service.PlanService;
-import com.nyeong.service.UserService;
+import com.nyeong.service.planService;
 import com.nyeong.util.BaseJson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/plan")
@@ -16,9 +14,34 @@ public class PlanController {
     private PlanService planService;
 
 
-    @GetMapping
+    //todo 如何直接根据 plan 实体进行操作
+
+    //根据 pid 获取详细计划
+    @GetMapping("query")
     public BaseJson getPlanByID(@RequestParam("planID") Integer planID) {
         return new BaseJson();
+    }
+
+    @GetMapping("query/routes")
+    public BaseJson getRoutesByID(@RequestParam("planID") Integer planID) {
+        return new BaseJson();
+    }
+
+
+    @PostMapping("/add")
+    public BaseJson add(Plan plan) {
+       return planService.addPlan( plan );
+    }
+
+    @PostMapping("/delete")
+    public BaseJson delete(@RequestParam Integer id) {
+        return planService.deleteById( id );
+
+    }
+
+    @PostMapping("/update")
+    public BaseJson update(Plan plan) {
+        return planService.update( plan );
     }
 
 

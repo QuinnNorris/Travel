@@ -36,7 +36,7 @@ public class PlanService {
 
     @Logged({"id"})
     @Transactional
-    public BaseJson getRouterByID(Integer id) {
+    public BaseJson getRoutesByID(Integer id) {
         BaseJson baseJson = new BaseJson();
         List routeList = planMapper.getAllRouteByPlanID( id );
 
