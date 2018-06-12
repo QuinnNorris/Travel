@@ -1,4 +1,7 @@
 package com.nyeong.mapper;
 
-public class PinMapper {
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface PinMapper {
 }
