@@ -134,7 +134,7 @@ public class PlanService extends BaseService {
         return baseJson.setErrorCode("0000");
     }
 
-    public BaseJson getRouterByID(Integer id) {
+    public BaseJson getRoutesByID(Integer id) {
         BaseJson baseJson = new BaseJson();
         List routeList = planMapper.getAllRouteByPlanID(id);
 
