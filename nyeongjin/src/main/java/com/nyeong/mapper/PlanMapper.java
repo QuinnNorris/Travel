@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Mapper
@@ -33,6 +34,7 @@ public interface PlanMapper {
     @Insert("INSERT INTO \"plan\"(\"mapID\",\"planName\") VALUES (#{mapID}, #{planName}) ")
     int insert(Plan plan);
 
+    List<Plan> getByPlanIds(List<Integer> planIds);
 
 
 //
