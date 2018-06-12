@@ -3,11 +3,9 @@ package com.nyeong.controller;
 import com.nyeong.annotation.Logged;
 import com.nyeong.service.UserService;
 import com.nyeong.util.BaseJson;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Title:  UserController
@@ -18,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @Version: 1.0
  **/
 
-//todo 修改返回结果，不能返回密码，重新组装
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -27,9 +25,11 @@ public class UserController {
 
     //根据 uid 获得用户信息
     @Logged({"id"})
-    @GetMapping("/user")
+    @GetMapping("/info")
     public BaseJson getUserMeg(@RequestParam("id") int id) {
-        return userService.getUserMsg( id );
+
+        BaseJson baseJson =  userService.getUserMsg( id );
+        return baseJson;
     }
 
     //注册用户
@@ -38,9 +38,6 @@ public class UserController {
     public BaseJson userRegister(@RequestParam("userName") String userName, @RequestParam("password") String password, @RequestParam("phone") String phone) {
         return userService.signUpUserMsg( userName, password, phone );
     }
-
-
-    //下面 todo
 
 
     //用户登录
@@ -61,23 +58,25 @@ public class UserController {
 //    }
 
 
-    //todo 省事的话可以不做这个。。
-//    @Logged({ "userID"})
-//    @GetMapping("/info")
-//    public BaseJson getMyUserInfo( @RequestParam("userID") int userID) {
-//        Token token = new Token( tokenString, userID );
-//        MyUserInfo myUserInfo = userService.getMyUserInfo( token );
-//        return BaseJson.success( myUserInfo );
-//    }
-
-
     @Logged({"userID", "newPassword", "oldPassword"})
     @PostMapping("/update/password")
-    public BaseJson updateUserPassword(@RequestParam("userID") int userID,
+    public BaseJson updateUserPassword(@RequestParam("id") int userID,
                                        @RequestParam("oldPassword") String oldPassword,
                                        @RequestParam("newPassword") String newPassword) {
 
         return userService.updateUserPassword( userID, oldPassword, newPassword );
+    }
+
+
+    //更新密码
+    @PostMapping("/updata/email")
+    public BaseJson updateUserPassword(@RequestParam("id") int userId, @RequestParam("email") String email) {
+        return userService.setUserEmail( userId, email );
+    }
+
+    @GetMapping("/register/code")
+    public BaseJson getVerifyCode(@RequestParam("phone") String phone) {
+        return userService.validatePhone( phone );
     }
 
 
