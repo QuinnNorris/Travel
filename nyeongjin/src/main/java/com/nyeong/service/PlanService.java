@@ -1,9 +1,11 @@
 package com.nyeong.service;
 
 import com.nyeong.entity.Participants;
+import com.nyeong.entity.Pin;
 import com.nyeong.entity.Plan;
 import com.nyeong.entity.Plat;
 import com.nyeong.mapper.ParticipantsMapper;
+import com.nyeong.mapper.PinMapper;
 import com.nyeong.mapper.PlanMapper;
 import com.nyeong.mapper.PlatMapper;
 import com.nyeong.util.BaseJson;
@@ -42,6 +44,9 @@ public class PlanService extends BaseService {
 
     @Autowired
     private PlatMapper platMapper;
+
+    @Autowired
+    private PinMapper pinMapper;
 
 
     /**
@@ -133,6 +138,44 @@ public class PlanService extends BaseService {
 
         return baseJson.setErrorCode("0000");
     }
+
+    /**
+     * 根据计划批量添加打点
+     * errorCode - 0000(成功)/1001(未找到);
+     * object - null;
+     *
+     * @param planId
+     * @param pinList
+     * @return
+     */
+    public BaseJson addPinByUserId(Integer planId, List<Pin> pinList) {
+
+        BaseJson baseJson = new BaseJson();
+        if (getPlanMsg(planId).getErrorCode().equals("1001"))
+            return baseJson;
+
+        for (Pin pin : pinList) {
+            pin.setIsDelete(ConfigeUtil.NOT_DELETE);
+            pin.setAddTime(new Date());
+            pinMapper.insert(pin);
+        }
+
+        return baseJson.setErrorCode("0000");
+    }
+
+    /**
+     * 根据打点Id修改信息
+     * errorCode - 0000(成功)/1001(未找到);
+     * object - null;
+     *
+     * @param pinId
+     * @param pin
+     * @return
+     */
+    public BaseJson updatePinByPlanId(Integer pinId, Pin pin) {
+
+    }
+
 
     public BaseJson getRoutesByID(Integer id) {
         BaseJson baseJson = new BaseJson();
