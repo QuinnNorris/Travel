@@ -24,6 +24,7 @@ public class UserInfo implements Serializable {
 
     private String userName;
 
+    @JsonIgnore
     private String password;
 
     private String phone;
