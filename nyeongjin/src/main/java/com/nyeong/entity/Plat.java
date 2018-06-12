@@ -25,6 +25,8 @@ public class Plat  implements Serializable {
 
     private int mapZoom;
 
+    private boolean isDelete;
+
     public Plat() {
     }
 
@@ -38,6 +40,14 @@ public class Plat  implements Serializable {
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
     }
 
     public int getMapID() {

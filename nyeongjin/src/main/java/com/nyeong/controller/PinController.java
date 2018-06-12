@@ -21,13 +21,12 @@ public class PinController {
     //根据 pid 获取详细计划
     @GetMapping("query")
     public BaseJson getpinByID(@RequestParam("pinID") Integer pinID) {
-        return new BaseJson();
+        return pinService.getPinsByPinID( pinID );
     }
 
-
     @PostMapping("/add")
-    public BaseJson add(pin pin) {
-        return pinService.addpin( pin );
+    public BaseJson add(Pin pin) {
+        return pinService.addPin( pin );
     }
 
     @PostMapping("/delete")
@@ -37,18 +36,8 @@ public class PinController {
     }
 
     @PostMapping("/update")
-    public BaseJson update(pin pin) {
+    public BaseJson update(Pin pin) {
         return pinService.update( pin );
     }
 
-    @GetMapping("query/routes")
-    public BaseJson getRoutesByID(@RequestParam("pinID") Integer pinID) {
-        return new BaseJson();
-    }
-
-
-    @GetMapping("/pins")
-    public BaseJson getPinsBypinID(@RequestParam("pinid") Integer pinID) {
-        return pinService.getPinsBypinID( pinID );
-    }
 }

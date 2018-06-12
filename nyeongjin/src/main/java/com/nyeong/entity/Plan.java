@@ -34,6 +34,8 @@ public class Plan implements Serializable {
 
     private Transportation defaultTransportation;
 
+    private boolean isDelete;
+
     public Plan() {
     }
 
@@ -49,6 +51,14 @@ public class Plan implements Serializable {
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
     }
 
     public int getPlanID() {

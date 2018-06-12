@@ -23,6 +23,8 @@ public class Participants implements Serializable {
 
     private ParticipantAuthorizationType participantAuthorizationType;
 
+    private boolean isDelete;
+
     public Participants() {
     }
 
@@ -58,6 +60,14 @@ public class Participants implements Serializable {
 
     public void setParticipantAuthorizationType(ParticipantAuthorizationType participantAuthorizationType) {
         this.participantAuthorizationType = participantAuthorizationType;
+    }
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
     }
 
     @Override
