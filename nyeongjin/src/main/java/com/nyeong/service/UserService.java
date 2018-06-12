@@ -26,29 +26,12 @@ import org.springframework.stereotype.Service;
  **/
 
 @Service
-public class UserService {
+public class UserService extends BaseService{
 
     @Autowired
     private UserInfoMapper userInfoMapper;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
-
-    /**
-     * 根据用户ID获取用户信息
-     * errorCode - 0000(成功)/1001(未找到);
-     * object - UserInfo;
-     *
-     * @return
-     */
-    public BaseJson getUserMsg(int id) {
-
-        BaseJson baseJson = new BaseJson().setObject(userInfoMapper.getOne(id));
-
-        if (baseJson.getObject() == null)
-            return baseJson.setErrorCode("1001");
-
-        return baseJson.setErrorCode("0000");
-    }
 
     /**
      * 注册用户
