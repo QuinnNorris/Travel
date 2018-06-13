@@ -10,6 +10,9 @@ import com.nyeong.entity.Participants;
 import com.nyeong.entity.Plan;
 import com.nyeong.entity.Plat;
 import com.nyeong.mapper.ParticipantsMapper;
+<<<<<<< HEAD
+>>>>>>> parent of d829abc... 10
+=======
 >>>>>>> parent of d829abc... 10
 import com.nyeong.mapper.PlanMapper;
 import com.nyeong.util.BaseJson;
@@ -27,6 +30,7 @@ public class PlanService {
     private static final Logger LOGGER = LoggerFactory.getLogger( PlanService.class );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     @Autowired
     private final PlanMapper planMapper;
 =======
@@ -35,6 +39,8 @@ public class PlanService {
     public PlanService(PlanMapper planMapper) {
         this.planMapper = planMapper;
     }
+=======
+>>>>>>> parent of d829abc... 10
 
     @Logged({"planID"})
     @Transactional
@@ -62,6 +68,7 @@ public class PlanService {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     @Transactional
     public BaseJson deleteById(Integer id) {
         BaseJson baseJson = new BaseJson();
@@ -78,6 +85,8 @@ public class PlanService {
     @Transactional
     public BaseJson getPinsByPlanID(Integer id) {
 =======
+=======
+>>>>>>> parent of d829abc... 10
     public BaseJson getRoutesByID(Integer id) {
 >>>>>>> parent of d829abc... 10
         BaseJson baseJson = new BaseJson();
