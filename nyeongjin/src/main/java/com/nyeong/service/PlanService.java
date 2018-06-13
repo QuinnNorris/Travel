@@ -1,9 +1,16 @@
 package com.nyeong.service;
 
+<<<<<<< HEAD
 import com.nyeong.annotation.Logged;
 import com.nyeong.entity.Plan;
 import com.nyeong.entity.Route;
 import com.nyeong.enums.ErrorCode;
+=======
+import com.nyeong.entity.Participants;
+import com.nyeong.entity.Plan;
+import com.nyeong.entity.Plat;
+import com.nyeong.mapper.ParticipantsMapper;
+>>>>>>> parent of d829abc... 10
 import com.nyeong.mapper.PlanMapper;
 import com.nyeong.util.BaseJson;
 import org.slf4j.Logger;
@@ -19,8 +26,11 @@ public class PlanService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger( PlanService.class );
 
+<<<<<<< HEAD
     @Autowired
     private final PlanMapper planMapper;
+=======
+>>>>>>> parent of d829abc... 10
 
     public PlanService(PlanMapper planMapper) {
         this.planMapper = planMapper;
@@ -51,6 +61,7 @@ public class PlanService {
         return baseJson;
     }
 
+<<<<<<< HEAD
     @Transactional
     public BaseJson deleteById(Integer id) {
         BaseJson baseJson = new BaseJson();
@@ -66,6 +77,9 @@ public class PlanService {
 
     @Transactional
     public BaseJson getPinsByPlanID(Integer id) {
+=======
+    public BaseJson getRoutesByID(Integer id) {
+>>>>>>> parent of d829abc... 10
         BaseJson baseJson = new BaseJson();
         return baseJson;
     }
