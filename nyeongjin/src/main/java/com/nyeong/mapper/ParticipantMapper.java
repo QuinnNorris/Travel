@@ -1,6 +1,10 @@
 package com.nyeong.mapper;
 
+import com.nyeong.entity.Plan;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * Title:  PlatMapper
@@ -14,5 +18,9 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ParticipantMapper {
+
+    @Select("select \"planID\" from participants where \"userID\"=#{userID} and \"isDelete\"=false")
+    int getPlanIDByuserID(@Param("userID") Integer userID);
+
 
 }

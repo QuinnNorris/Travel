@@ -1,5 +1,7 @@
 package com.nyeong.mapper;
 
+import com.nyeong.entity.Pin;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -14,5 +16,12 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface PinMapper {
 
+    /**
+     * 插入Pin
+     * @param pin
+     * @return
+     */
+    @Insert("insert into \"pin\"(\"planID\",\"pinLatitude\",\"pinLongitude\",\"pinTitle\",\"pinArrival\",\"pinDeparture\",\"pinStatus\",\"pinNotes\",\"isDelete\") values (#{planID},#{pinLatitude},#{pinLongitude},#{pinTTitle},#{pinArrival},#{pinDeparture},CAST(#{pinStatus} as \"enum_pinStatus\"),#{pinNotes},#{isDelete}")
+    int insert(Pin pin);
 
 }

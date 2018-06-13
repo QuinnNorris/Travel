@@ -134,7 +134,7 @@ public class PlanService extends BaseService {
         planMapper.update(plan);
 
         plan.setUpdateTime(new Date());
-        platMapper.update(plan);
+        platMapper.update(plat);
 
         return baseJson.setErrorCode("0000");
     }

@@ -1,6 +1,9 @@
 package com.nyeong.mapper;
 
+import com.nyeong.entity.Plat;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * Title:  PlatMapper
@@ -13,7 +16,19 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface PlatMapper {
+    /**
+     * 插入Plat
+     * @param plat
+     * @return int
+     */
+    @Insert("insert into \"plat\" (\"planID\",\"centerLatitude\",\"centerLongitude\",\"mapIsAbroad\",\"mapZoom\") values (#{planID},#{centerLatitude},#{centerLongitude},#{mapIsAbroad},#{mapZoom})")
+    int insert(Plat plat);
 
-
-
+    /**
+     * 修改Plat
+     * @param plat
+     * @return int
+     */
+    @Update("update \"plat\" set \"planID\"=#{planID},\"centerLatitude\"=#{centerLatitude},\"centerLongitude\"=#{centerLongitude},\"mapIsAbroad\"=#{mapIsAbroad},\"mapZoom\"=#{mapZoom} where \"mapID\"=#{mapID}")
+    int update(Plat plat);
 }

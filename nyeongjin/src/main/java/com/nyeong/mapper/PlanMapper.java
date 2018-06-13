@@ -2,10 +2,7 @@ package com.nyeong.mapper;
 
 import com.nyeong.entity.Plan;
 import com.nyeong.entity.Route;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -18,22 +15,39 @@ public interface PlanMapper {
      * @param planID id
      * @return Plan
      */
-    @Select("SELECT * FROM \"plan\" WHERE \"planID\" = #{id}")
+    @Select("SELECT * FROM \"plan\" WHERE \"planID\" = #{id} and \"isDelete\"=false")
     Plan getPlanByID(@Param("id") Integer planID);
-
 
     /**
      * 根据 planID 查找所有的 routes
      * @param planID
      * @return
      */
-    @Select("SELECT * FROM route WHERE \"planID\" = #{planID} ORDER BY origin ")
+    @Select("SELECT * FROM route WHERE \"planID\" = #{planID} and \"isDelete\"=false ORDER BY origin ")
     List<Route> getAllRouteByPlanID(@Param("planID") int planID);
 
+    /**
+     * 插入Plan
+     * @param plan
+     * @return
+     */
     @Insert("INSERT INTO \"plan\"(\"mapID\",\"planName\") VALUES (#{mapID}, #{planName}) ")
     int insert(Plan plan);
 
+    /**
+     * 修改Plan
+     * @param plan
+     * @return
+     */
+    @Update("update \"plan\" set \"planName\"=#{planName},\"planType\"=CAST(#{planType} as \"enum_planType\"),\"planCreatedDate\"=#{planCreatedDate},\"planModifiedDate\"=#{planModifiedDate},\"defaultTransportation\"=CAST(#{Transportation} AS \"enum_transportation\" where \"planID\"=#{planID})")
+    int update(Plan plan);
 
+    /**
+     * 获取Plan的list
+     * @param planIds
+     * @return
+     */
+    List<Plan>getByPlanIds(List<Integer> planIds);
 
 //
 //    ==============
