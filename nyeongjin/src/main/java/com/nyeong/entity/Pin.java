@@ -34,4 +34,76 @@ public class Pin implements Serializable {
     private PinStatus pinStatus;
 
     private String pinNotes;
+
+    public int getPinID() {
+        return pinID;
+    }
+
+    public void setPinID(int pinID) {
+        this.pinID = pinID;
+    }
+
+    public int getPlanID() {
+        return planID;
+    }
+
+    public void setPlanID(int planID) {
+        this.planID = planID;
+    }
+
+    public double getPinLatitude() {
+        return pinLatitude;
+    }
+
+    public void setPinLatitude(double pinLatitude) {
+        this.pinLatitude = pinLatitude;
+    }
+
+    public double getPinLongitude() {
+        return pinLongitude;
+    }
+
+    public void setPinLongitude(double pinLongitude) {
+        this.pinLongitude = pinLongitude;
+    }
+
+    public String getPinTitle() {
+        return pinTitle;
+    }
+
+    public void setPinTitle(String pinTitle) {
+        this.pinTitle = pinTitle;
+    }
+
+    public Date getPinArrival() {
+        return pinArrival;
+    }
+
+    public void setPinArrival(Date pinArrival) {
+        this.pinArrival = pinArrival;
+    }
+
+    public Date getPinDeparture() {
+        return pinDeparture;
+    }
+
+    public void setPinDeparture(Date pinDeparture) {
+        this.pinDeparture = pinDeparture;
+    }
+
+    public PinStatus getPinStatus() {
+        return pinStatus;
+    }
+
+    public void setPinStatus(PinStatus pinStatus) {
+        this.pinStatus = pinStatus;
+    }
+
+    public String getPinNotes() {
+        return pinNotes;
+    }
+
+    public void setPinNotes(String pinNotes) {
+        this.pinNotes = pinNotes;
+    }
 }

@@ -2,15 +2,9 @@ package com.nyeong.controller;
 
 import com.nyeong.annotation.Logged;
 import com.nyeong.entity.Participants;
-import com.nyeong.entity.Plan;
 import com.nyeong.service.ParticipantService;
-import com.nyeong.service.PlanService;
 import com.nyeong.util.BaseJson;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 

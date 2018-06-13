@@ -17,13 +17,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
- * Title: PlanService
+ * Title: PlanPinService
  * Description: 业务处理 计划
  *
  * @Author: quanningzhen
@@ -32,9 +31,9 @@ import java.util.List;
  **/
 
 @Service
-public class PlanService extends BaseService {
+public class PlanPinService extends BaseService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PlanService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PlanPinService.class);
 
     @Autowired
     private PlanMapper planMapper;
@@ -173,14 +172,37 @@ public class PlanService extends BaseService {
      * @return
      */
     public BaseJson updatePinByPlanId(Integer pinId, Pin pin) {
-        
+
+        BaseJson baseJson = new BaseJson();
+        if (getPinMsg(pinId).getErrorCode().equals("1001"))
+            return baseJson;
+
+        pin.setUpdateTime(new Date());
+        pinMapper.updateBypinId(pin);
+
+        return baseJson.setErrorCode("0000");
     }
 
-    public BaseJson getRoutesByID(Integer id) {
-        BaseJson baseJson = new BaseJson();
-        List routeList = planMapper.getAllRouteByPlanID(id);
+    /**
+     * 根据计划id找出所有属于这个计划在使用的打点
+     * errorCode - 0000(成功)/1001(未找到);
+     * object - List - Pin - pins;
+     *
+     * @param planId
+     * @return
+     */
+    public BaseJson getPinsByPlanId(Integer planId) {
 
-        return baseJson;
+        BaseJson baseJson = new BaseJson();
+        if (getUserMsg(planId).getErrorCode().equals("1001"))
+            return baseJson;
+
+        Pin pin = new Pin();
+        pin.setPlanID(planId);
+        pin.setIsDelete(ConfigeUtil.NOT_DELETE);
+
+        List<Pin> pins = pinMapper.getByPlanId(pin);
+        return baseJson.setObject(pins).setErrorCode("0000");
     }
 
 }

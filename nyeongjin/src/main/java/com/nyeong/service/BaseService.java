@@ -1,5 +1,6 @@
 package com.nyeong.service;
 
+import com.nyeong.mapper.PinMapper;
 import com.nyeong.mapper.PlanMapper;
 import com.nyeong.mapper.UserInfoMapper;
 import com.nyeong.util.BaseJson;
@@ -23,6 +24,9 @@ public class BaseService {
 
     @Autowired
     private PlanMapper planMapper;
+
+    @Autowired
+    private PinMapper pinMapper;
 
     /**
      * 根据用户ID获取用户信息
@@ -52,6 +56,24 @@ public class BaseService {
     public BaseJson getPlanMsg(int id) {
 
         BaseJson baseJson = new BaseJson().setObject(planMapper.getPlanByID(id));
+
+        if (baseJson.getObject() == null)
+            return baseJson.setErrorCode("1001");
+
+        return baseJson.setErrorCode("0000");
+    }
+
+    /**
+     * 根据打点ID获取计划信息
+     * errorCode - 0000(成功)/1001(未找到);
+     * object - Pin;
+     *
+     * @param id
+     * @return
+     */
+    public BaseJson getPinMsg(int id) {
+
+        BaseJson baseJson = new BaseJson().setObject(pinMapper.getPinByID(id));
 
         if (baseJson.getObject() == null)
             return baseJson.setErrorCode("1001");
