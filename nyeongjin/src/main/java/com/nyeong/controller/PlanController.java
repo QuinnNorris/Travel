@@ -18,7 +18,7 @@ public class PlanController {
     //根据 pid 获取详细计划
     @GetMapping("query")
     public BaseJson getPlanByID(@RequestParam("planID") Integer planID) {
-        return planService.getPlanById( planID );
+        return new BaseJson();
     }
 
 
