@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Title: PlanService
+ * Title: PlanPinService
  * Description: 业务处理 计划
  *
  * @Author: quanningzhen
@@ -31,9 +31,9 @@ import java.util.List;
  **/
 
 @Service
-public class PlanService extends BaseService {
+public class PlanPinService extends BaseService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PlanService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PlanPinService.class);
 
     @Autowired
     private PlanMapper planMapper;

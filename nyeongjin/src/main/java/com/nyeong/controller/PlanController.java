@@ -1,7 +1,7 @@
 package com.nyeong.controller;
 
 import com.nyeong.entity.Plan;
-import com.nyeong.service.PlanService;
+import com.nyeong.service.PlanPinService;
 import com.nyeong.util.BaseJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/plan")
 public class PlanController {
     @Autowired
-    private PlanService planService;
+    private PlanPinService planService;
 
 
     //todo 如何直接根据 plan 实体进行操作
