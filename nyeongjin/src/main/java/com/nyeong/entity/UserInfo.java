@@ -34,8 +34,6 @@ public class UserInfo implements Serializable {
 
     private UserStatus userStatus;
 
-    private boolean isDelete;
-
     public UserInfo() {
 
     }
@@ -59,14 +57,6 @@ public class UserInfo implements Serializable {
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
-    }
-
-    public boolean isDelete() {
-        return isDelete;
-    }
-
-    public void setDelete(boolean delete) {
-        isDelete = delete;
     }
 
     public int getUserID() {

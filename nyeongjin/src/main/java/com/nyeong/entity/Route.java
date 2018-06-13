@@ -31,8 +31,6 @@ public class Route implements Serializable {
 
     private boolean routeIsChosen;
 
-    private boolean isDelete;
-
     public Route() {
     }
 
@@ -48,14 +46,6 @@ public class Route implements Serializable {
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
-    }
-
-    public boolean isDelete() {
-        return isDelete;
-    }
-
-    public void setDelete(boolean delete) {
-        isDelete = delete;
     }
 
     public int getRouteID() {

@@ -36,8 +36,6 @@ public class Pin implements Serializable {
 
     private String pinNotes;
 
-    private boolean isDelete;
-
     public int getPinID() {
         return pinID;
     }
@@ -108,14 +106,6 @@ public class Pin implements Serializable {
 
     public void setPinNotes(String pinNotes) {
         this.pinNotes = pinNotes;
-    }
-
-    public boolean isDelete() {
-        return isDelete;
-    }
-
-    public void setDelete(boolean delete) {
-        isDelete = delete;
     }
 
     @Override
