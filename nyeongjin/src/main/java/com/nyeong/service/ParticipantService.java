@@ -99,7 +99,6 @@ public class ParticipantService extends BaseService {
      */
     public BaseJson addParticipants(Participants participants) {
 
-        participants.setAddTime(new Date());
         participants.setIsDelete(ConfigeUtil.NOT_DELETE);
         participantMapper.insert();
 
@@ -116,7 +115,6 @@ public class ParticipantService extends BaseService {
      */
     public BaseJson updateParticipants(Participants participants) {
 
-        participants.setUpdateTime(new Date());
         participantMapper.updateParticipants(participants);
 
         return new BaseJson("0000");

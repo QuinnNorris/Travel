@@ -34,6 +34,18 @@ public class UserInfo implements Serializable {
 
     private UserStatus userStatus;
 
+
+
+    private int isDelete = 0;
+
+    public int getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(int isDelete) {
+        this.isDelete = isDelete;
+    }
+
     public UserInfo() {
 
     }

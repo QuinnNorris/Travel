@@ -2,6 +2,7 @@ package com.nyeong.entity;
 
 import com.nyeong.enums.PinStatus;
 
+import javax.print.attribute.standard.PrinterURI;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -34,6 +35,36 @@ public class Pin implements Serializable {
     private PinStatus pinStatus;
 
     private String pinNotes;
+
+    private Date addTime;
+    private Date updateTime;
+
+
+    private int isDelete = 0;
+
+    public Date getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(Date addTime) {
+        this.addTime = addTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public int getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(int isDelete) {
+        this.isDelete = isDelete;
+    }
 
     public int getPinID() {
         return pinID;

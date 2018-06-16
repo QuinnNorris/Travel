@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Title: PlanPinService
+ * Title: PlanPlanPinService
  * Description: 业务处理 计划
  *
  * @Author: quanningzhen
@@ -33,7 +33,7 @@ import java.util.List;
 @Service
 public class PlanPinService extends BaseService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PlanPinService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PlanPlanPinService.class);
 
     @Autowired
     private PlanMapper planMapper;
@@ -67,7 +67,7 @@ public class PlanPinService extends BaseService {
         participants.setParticipantID(userId);
         participants.setIsDelete(ConfigeUtil.NOT_DELETE);
 
-        baseJson.setObject(participantsMapper.getPlanIDByuserID(participants));
+        baseJson.setObject(participantsMapper.getPlanIDByuserID(participants.getParticipantID()));
         List<Participants> participantsList = (List<Participants>) baseJson.getObject();
 
         if (participantsList == null || (participantsList.isEmpty()))
@@ -104,12 +104,11 @@ public class PlanPinService extends BaseService {
         if (getUserMsg(userId).getErrorCode().equals("1001"))
             return baseJson;
 
-        plan.setIsdelete(ConfigeUtil.NOT_DELETE);
-        plan.setAddTime(new Date());
+        plan.setIsDelete(ConfigeUtil.NOT_DELETE);
+        plan.setPlanCreatedDate(new Date());
         planMapper.insert(plan);
 
-        plat.setIsdelete(ConfigeUtil.NOT_DELETE);
-        plat.setAddTime(new Date());
+        plat.setIsDelete(ConfigeUtil.NOT_DELETE);
         platMapper.insert(plat);
 
         return baseJson.setErrorCode("0000");
@@ -129,10 +128,10 @@ public class PlanPinService extends BaseService {
         if (getUserMsg(userId).getErrorCode().equals("1001"))
             return baseJson;
 
-        plan.setUpdateTime(new Date());
+        plan.setPlanModifiedDate(new Date());
         planMapper.update(plan);
 
-        plan.setUpdateTime(new Date());
+        plan.setPlanModifiedDate(new Date());
         platMapper.update(plat);
 
         return baseJson.setErrorCode("0000");

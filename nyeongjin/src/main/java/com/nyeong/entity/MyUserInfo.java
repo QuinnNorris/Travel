@@ -30,6 +30,17 @@ public class MyUserInfo implements Serializable {
 
     private String nickName;
 
+    //0代表没有 delete
+    private int isDelete = 0;
+
+    public int getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(int isDelete) {
+        this.isDelete = isDelete;
+    }
+
     public MyUserInfo() {
     }
 

@@ -78,11 +78,11 @@ public class PlatRouteService {
      * @param plat
      * @return
      */
-    public BaseJson updatePlanByUserId(Plat plat) {
+    public BaseJson updatePlat(Plat plat) {
 
         BaseJson baseJson = new BaseJson();
 
-        platMapper.updateByMapId(plat);
+        platMapper.update(plat);
 
         return baseJson.setErrorCode("0000");
 
@@ -97,6 +97,7 @@ public class PlatRouteService {
      * @param pinEndId
      * @return
      */
+    //todo what's this
     public BaseJson getRouteByPinBegIdAndPinEndId(Integer pinBegId, Integer pinEndId) {
 
         BaseJson baseJson = new BaseJson();
@@ -118,7 +119,7 @@ public class PlatRouteService {
      * @param planId
      * @return
      */
-    public BaseJson getRouteByPinBegIdAndPinEndId(Integer planId) {
+    public BaseJson getRoutesByPlanId(Integer planId) {
 
         BaseJson baseJson = new BaseJson();
 
@@ -126,7 +127,7 @@ public class PlatRouteService {
         route.setPlanID(planId);
         route.setIsDelete(ConfigeUtil.NOT_DELETE);
 
-        List<Route> routes = routeMapper.getRouteByPlanId(route);
+        List<Route> routes = routeMapper.getRoutesByPlanId(route);
         return baseJson.setObject(routes).setErrorCode("0000");
     }
 

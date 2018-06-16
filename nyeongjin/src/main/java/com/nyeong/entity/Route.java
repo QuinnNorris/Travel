@@ -31,6 +31,17 @@ public class Route implements Serializable {
 
     private boolean routeIsChosen;
 
+
+    private int isDelete = 0;
+
+    public int getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(int isDelete) {
+        this.isDelete = isDelete;
+    }
+
     public Route() {
     }
 
