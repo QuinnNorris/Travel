@@ -25,9 +25,11 @@ public interface RouteMapper {
     @Select("select * from route where \"planID\"=#{planID} and \"isDelete\"=false")
     List<Route> getRoutesByPlanId(Route route);
 
-    @Insert("insert into route(\"planID\",\"origin\",\"destination\",\"routeTransportation\",\"routeTime\",\"routeIsChosen\",\"isDelete\") values(#{planID},#{origin},#{destination},#{routeTransportation},#{routeTime},CAST(#{routeTransportation} as \"enum_transportation\"),\"isDelete\"=#{isDelete})")
+    @Insert("insert into route(\"planID\",\"origin\",\"destination\",\"routeTransportation\",\"routeTime\",\"routeIsChosen\",\"isDelete\") values(#{planID},#{origin},#{destination},CAST(#{routeTransportation} as \"enum_transportation\"),#{routeTime},#{routeIsChosen},#{isDelete})")
     int insert(Route route);
 
     @Update("update route set \"planID\"=#{planID},\"origin\"=#{origin},\"destination\"=#{destination},\"routeTransportation\"=CAST(#{routeTransportantion}as \"enum_transportantion\"),\"routeTime\"=#{routeTime},\"routeIsChosen\"=#{routeIsChosen},\"isDelete\"=#{isDelete}")
     int updateByRouteId(Route route);
+
+    
 }

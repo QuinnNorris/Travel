@@ -23,6 +23,15 @@ public class Route implements Serializable {
 
     private int origin;
 
+    public Route(int planID, int origin, int destination, Transportation routeTransportation, int routeTime, boolean routeIsChosen) {
+        this.planID = planID;
+        this.origin = origin;
+        this.destination = destination;
+        this.routeTransportation = routeTransportation;
+        this.routeTime = routeTime;
+        this.routeIsChosen = routeIsChosen;
+    }
+
     private int destination;
 
     private Transportation routeTransportation;
@@ -30,7 +39,6 @@ public class Route implements Serializable {
     private int routeTime;
 
     private boolean routeIsChosen;
-
 
     private boolean isDelete = false;
 
@@ -53,6 +61,16 @@ public class Route implements Serializable {
         this.routeTransportation = routeTransportation;
         this.routeTime = routeTime;
         this.routeIsChosen = routeIsChosen;
+    }
+
+    public Route(int planID, int origin, int destination, Transportation routeTransportation, int routeTime, boolean routeIsChosen, boolean isDelete) {
+        this.planID = planID;
+        this.origin = origin;
+        this.destination = destination;
+        this.routeTransportation = routeTransportation;
+        this.routeTime = routeTime;
+        this.routeIsChosen = routeIsChosen;
+        this.isDelete = isDelete;
     }
 
     public static long getSerialVersionUID() {

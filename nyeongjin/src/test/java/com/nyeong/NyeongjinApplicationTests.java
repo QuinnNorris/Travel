@@ -8,9 +8,7 @@ import com.nyeong.enums.ParticipantAuthorizationType;
 import com.nyeong.enums.PinStatus;
 import com.nyeong.enums.PlanType;
 import com.nyeong.enums.Transportation;
-import com.nyeong.mapper.ParticipantMapper;
-import com.nyeong.mapper.PinMapper;
-import com.nyeong.mapper.PlanMapper;
+import com.nyeong.mapper.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -77,5 +75,20 @@ public class NyeongjinApplicationTests {
 //		Assert.assertEquals(routes.size(),2);
 //	}
 
+//	@Autowired
+//	PlatMapper platMapper;
+//
+//	@Test
+//	public void testPlatMapper(){
+//
+//	}
 
+	@Autowired
+	RouteMapper routeMapper;
+
+	@Test
+	public void testRouteMapper(){
+		Route route=new Route(1,1,3,Transportation.WALK,100,true,false);
+		routeMapper.insert(route);
+	}
 }
