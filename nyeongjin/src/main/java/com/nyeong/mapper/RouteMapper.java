@@ -28,8 +28,8 @@ public interface RouteMapper {
     @Insert("insert into route(\"planID\",\"origin\",\"destination\",\"routeTransportation\",\"routeTime\",\"routeIsChosen\",\"isDelete\") values(#{planID},#{origin},#{destination},CAST(#{routeTransportation} as \"enum_transportation\"),#{routeTime},#{routeIsChosen},#{isDelete})")
     int insert(Route route);
 
-    @Update("update route set \"planID\"=#{planID},\"origin\"=#{origin},\"destination\"=#{destination},\"routeTransportation\"=CAST(#{routeTransportantion}as \"enum_transportantion\"),\"routeTime\"=#{routeTime},\"routeIsChosen\"=#{routeIsChosen},\"isDelete\"=#{isDelete}")
+    @Update("update route set \"planID\"=#{planID},\"origin\"=#{origin},\"destination\"=#{destination},\"routeTransportation\"=CAST(#{routeTransportation} as \"enum_transportation\"),\"routeTime\"=#{routeTime},\"routeIsChosen\"=#{routeIsChosen},\"isDelete\"=#{isDelete}")
     int updateByRouteId(Route route);
 
-    
+
 }

@@ -88,7 +88,15 @@ public class NyeongjinApplicationTests {
 
 	@Test
 	public void testRouteMapper(){
-		Route route=new Route(1,1,3,Transportation.WALK,100,true,false);
-		routeMapper.insert(route);
+
+		//routeMapper.insert(route);
+//		Route route=new Route(1);
+//		List<Route> routes=routeMapper.getRoutesByPlanId(route);
+//		Assert.assertEquals(3,routes.size());
+//		Route route=new Route(4,1,0,3,Transportation.WALK,100,true,false);
+//		routeMapper.updateByRouteId(route);
+		Route route=new Route(0,0,0,3,Transportation.WALK,100,true,false);
+		Route route1=routeMapper.getRouteByOriginAndDestination(route);
+		Assert.assertEquals(5,route1.getRouteID());
 	}
 }

@@ -23,16 +23,15 @@ public class Route implements Serializable {
 
     private int origin;
 
-    public Route(int planID, int origin, int destination, Transportation routeTransportation, int routeTime, boolean routeIsChosen) {
-        this.planID = planID;
-        this.origin = origin;
-        this.destination = destination;
-        this.routeTransportation = routeTransportation;
-        this.routeTime = routeTime;
-        this.routeIsChosen = routeIsChosen;
+    private int destination;
+
+    public boolean isDelete() {
+        return isDelete;
     }
 
-    private int destination;
+    public void setDelete(boolean delete) {
+        isDelete = delete;
+    }
 
     private Transportation routeTransportation;
 
@@ -51,6 +50,21 @@ public class Route implements Serializable {
     }
 
     public Route() {
+    }
+
+    public Route(int planID){
+        this.planID=planID;
+    }
+
+    public Route(int routeID, int planID, int origin, int destination, Transportation routeTransportation, int routeTime, boolean routeIsChosen, boolean isDelete) {
+        this.routeID = routeID;
+        this.planID = planID;
+        this.origin = origin;
+        this.destination = destination;
+        this.routeTransportation = routeTransportation;
+        this.routeTime = routeTime;
+        this.routeIsChosen = routeIsChosen;
+        this.isDelete = isDelete;
     }
 
     public Route(int routeID, int planID, int origin, int destination, Transportation routeTransportation, int routeTime, boolean routeIsChosen) {
@@ -73,6 +87,14 @@ public class Route implements Serializable {
         this.isDelete = isDelete;
     }
 
+    public Route(int planID, int origin, int destination, Transportation routeTransportation, int routeTime, boolean routeIsChosen) {
+        this.planID = planID;
+        this.origin = origin;
+        this.destination = destination;
+        this.routeTransportation = routeTransportation;
+        this.routeTime = routeTime;
+        this.routeIsChosen = routeIsChosen;
+    }
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
