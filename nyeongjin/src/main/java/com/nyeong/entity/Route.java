@@ -32,13 +32,13 @@ public class Route implements Serializable {
     private boolean routeIsChosen;
 
 
-    private int isDelete = 0;
+    private boolean isDelete = false;
 
-    public int getIsDelete() {
+    public boolean getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(int isDelete) {
+    public void setIsDelete(boolean isDelete) {
         this.isDelete = isDelete;
     }
 

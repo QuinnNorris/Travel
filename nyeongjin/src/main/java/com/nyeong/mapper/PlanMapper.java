@@ -31,7 +31,7 @@ public interface PlanMapper {
      * @param plan
      * @return
      */
-    @Insert("INSERT INTO \"plan\"(\"mapID\",\"planName\") VALUES (#{mapID}, #{planName}) ")
+    @Insert("INSERT INTO \"plan\"(\"planName\",\"planType\",\"planCreatedDate\",\"planModifiedDate\",\"defaultTransportation\",\"isDelete\") VALUES (#{planName},CAST(#{planType} as \"enum_planType\"),#{planCreatedDate},#{planModifiedDate},CAST(#{defaultTransportation} as \"enum_transportation\"),#{isDelete})")
     int insert(Plan plan);
 
     /**
@@ -39,87 +39,15 @@ public interface PlanMapper {
      * @param plan
      * @return
      */
-    @Update("update \"plan\" set \"planName\"=#{planName},\"planType\"=CAST(#{planType} as \"enum_planType\"),\"planCreatedDate\"=#{planCreatedDate},\"planModifiedDate\"=#{planModifiedDate},\"defaultTransportation\"=CAST(#{Transportation} AS \"enum_transportation\" where \"planID\"=#{planID})")
+    @Update("update \"plan\" set \"planName\"=#{planName},\"planType\"=CAST(#{planType} as \"enum_planType\"),\"planCreatedDate\"=#{planCreatedDate},\"planModifiedDate\"=#{planModifiedDate},\"defaultTransportation\"=CAST(#{defaultTransportation} AS \"enum_transportation\") where \"planID\"=#{planID}")
     int update(Plan plan);
 
     /**
      * 获取Plan的list
-     * @param planIds
+     * @param planId
      * @return
      */
-    List<Plan>getByPlanIds(List<Integer> planIds);
-
-//
-//    ==============
-//    以下仅作为参考写法
-//    ==============
-
-    /**
-     * @return userinfoArray
-     * @Description: 获取表中全部数据
-     */
-//    @Select("SELECT * FROM \"userInfo\"")
-//    List<UserInfo> getAll();
-//
-//    /**
-//     * @param userID
-//     * @return userInfo
-//     * @Description: 按userID来获取表中的一条数据
-//     */
-//    @Select("SELECT * FROM \"userInfo\" WHERE \"userID\" = #{userID}")
-//    UserInfo getOne(@Param("userID") Integer userID);
-//
-//    /**
-//     * @param userID
-//     * @return myUserInfo
-//     * @Description: 按userID来获取视图中的一条数据
-//     */
-//    @Select("SELECT * FROM \"myUserInfo\" WHERE \"userID\" = #{userID}")
-//    MyUserInfo getOneFromView(@Param("userID") Integer userID);
-//
-//    /**
-//     * @param userName
-//     * @return userInfo
-//     * @Description: 按userName来获取表中的一条数据
-//     */
-//    @Select("SELECT * FROM \"userInfo\" WHERE \"userName\" = #{userName}")
-//    UserInfo getOneByUserName(@Param("userName") String userName);
-//
-//    /**
-//     * @param phone
-//     * @return userInfo
-//     * @Description: 按phone来获取表中的一条数据
-//     */
-//    @Select("SELECT * FROM \"userInfo\" WHERE phone = #{phone}")
-//    UserInfo getOneByPhone(@Param("phone") String phone);
-//
-//    /**
-//     * @param email
-//     * @return userInfo
-//     * @Description: 按email来获取表中的一条数据
-//     */
-//    @Select("SELECT * FROM \"userInfo\" WHERE email = #{email}")
-//    UserInfo getOneByEmail(@Param("email") String email);
-//
-//    /**
-//     * @param userInfo
-//     * @Description: 向表中插入一条数据
-//     */
-//    @Insert({"INSERT INTO \"userInfo\" (\"userName\", password, phone, email, \"userStatus\", \"nickName\") VALUES (#{userName}, #{password}, #{phone}, #{email}, CAST (#{userStatus} AS \"enum_userStatus\"), #{nickName})"})
-//    int insert(UserInfo userInfo);
-//
-//    /**
-//     * @param userID, newPassword
-//     * @Description: 修改表中一条数据的password
-//     */
-//    @Update("UPDATE \"userInfo\" SET password = #{newPassword} WHERE \"userID\" =#{userID}")
-//    int updatePassword(@Param("userID") Integer userID, @Param("newPassword") String newPassword);
-//
-//    /**
-//     * @param userID
-//     * @Description: 删除表中的一条数据
-//     */
-//    @Delete("DELETE FROM \"userInfo\" WHERE \"userID\" =#{userID}")
-//    int delete(@Param("userID") Integer userID);
+    @Select("select * from plan where \"planID\"=#{planID} and \"isDelete\"=false")
+    Plan getByPlanIds(@Param("planID")Integer planId);
 
 }

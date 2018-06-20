@@ -1,8 +1,9 @@
 package com.nyeong.mapper;
 
 import com.nyeong.entity.Pin;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 /**
  * Title:  PinMapper
@@ -21,7 +22,15 @@ public interface PinMapper {
      * @param pin
      * @return
      */
-    @Insert("insert into \"pin\"(\"planID\",\"pinLatitude\",\"pinLongitude\",\"pinTitle\",\"pinArrival\",\"pinDeparture\",\"pinStatus\",\"pinNotes\",\"isDelete\") values (#{planID},#{pinLatitude},#{pinLongitude},#{pinTTitle},#{pinArrival},#{pinDeparture},CAST(#{pinStatus} as \"enum_pinStatus\"),#{pinNotes},#{isDelete}")
+    @Insert("insert into \"pin\"(\"planID\",\"pinLatitude\",\"pinLongitude\",\"pinTitle\",\"pinArrival\",\"pinDeparture\",\"pinStatus\",\"pinNotes\",\"isDelete\") values (#{planID},#{pinLatitude},#{pinLongitude},#{pinTitle},#{pinArrival},#{pinDeparture},CAST(#{pinStatus} as \"enum_pinStatus\"),#{pinNotes},#{isDelete})")
     int insert(Pin pin);
 
+    @Select("select * from pin where \"pinID\"=#{id} and \"isDelete\"=false")
+    Pin getPinByID(@Param("id") int id);
+
+    @Update("update pin set \"planID\"=#{planID},\"pinLatitude\"=#{pinLatitude},\"pinLongitude\"=#{pinLongitude},\"pinTitle\"=#{pinTitle},\"pinArrival\"=#{pinArrival},\"pinDeparture\"=#{pinDeparture},\"pinStatus\"=CAST(#{pinStatus} AS \"enum_pinStatus\"),\"pinNotes\"=#{pinNotes},\"isDelete\"=#{isDelete} where \"pinID\"=#{pinID}")
+    int updateBypinId(Pin pin);
+
+    @Select("select * from pin where \"planID\"=#{planID} and \"isDelete\"=false")
+    List<Pin> getByPlanId(Pin pin);
 }

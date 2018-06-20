@@ -21,7 +21,7 @@ public interface UserInfoMapper {
      * @Description: 获取表中全部数据
      * @return userinfoArray
      */
-    @Select("SELECT * FROM \"userInfo\"")
+    @Select("SELECT * FROM \"userInfo\" where \"isDelete\"=false")
     List<UserInfo> getAll();
 
     /**
@@ -29,7 +29,7 @@ public interface UserInfoMapper {
      * @param userID
      * @return userInfo
      */
-    @Select("SELECT * FROM \"userInfo\" WHERE \"userID\" = #{userID}")
+    @Select("SELECT * FROM \"userInfo\" WHERE \"userID\" = #{userID} and \"isDelete\"=false")
     UserInfo getOne(@Param("userID") Integer userID);
 
     /**
@@ -37,7 +37,7 @@ public interface UserInfoMapper {
      * @param userID
      * @return myUserInfo
      */
-    @Select("SELECT * FROM \"myUserInfo\" WHERE \"userID\" = #{userID}")
+    @Select("SELECT * FROM \"myUserInfo\" WHERE \"userID\" = #{userID} and \"isDelete\"=false")
     MyUserInfo getOneFromView(@Param("userID") Integer userID);
 
     /**
@@ -45,7 +45,7 @@ public interface UserInfoMapper {
      * @param userName
      * @return userInfo
      */
-    @Select("SELECT * FROM \"userInfo\" WHERE \"userName\" = #{userName}")
+    @Select("SELECT * FROM \"userInfo\" WHERE \"userName\" = #{userName} and \"isDelete\"=false")
     UserInfo getOneByUserName(@Param("userName") String userName);
 
     /**
@@ -53,7 +53,7 @@ public interface UserInfoMapper {
      * @param phone
      * @return userInfo
      */
-    @Select("SELECT * FROM \"userInfo\" WHERE phone = #{phone}")
+    @Select("SELECT * FROM \"userInfo\" WHERE phone = #{phone} and \"isDelete\"=false")
     UserInfo getOneByPhone(@Param("phone") String phone);
 
     /**
@@ -61,7 +61,7 @@ public interface UserInfoMapper {
      * @param email
      * @return userInfo
      */
-    @Select("SELECT * FROM \"userInfo\" WHERE email = #{email}")
+    @Select("SELECT * FROM \"userInfo\" WHERE email = #{email} and \"isDelete\"=false")
     UserInfo getOneByEmail(@Param("email") String email);
 
     /**
@@ -82,7 +82,7 @@ public interface UserInfoMapper {
      * @Description: 删除表中的一条数据
      * @param userID
      */
-    @Delete("DELETE FROM \"userInfo\" WHERE \"userID\" =#{userID}")
+    @Delete("update \"userInfo\" set \"isDelete\"=true WHERE \"userID\" =#{userID}")
     int delete(@Param("userID") Integer userID);
 
     UserInfo getOneByUserNameAndPassword(String userName, String oldPassword);

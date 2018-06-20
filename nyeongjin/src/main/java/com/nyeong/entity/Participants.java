@@ -23,13 +23,13 @@ public class Participants implements Serializable {
 
     private ParticipantAuthorizationType participantAuthorizationType;
 
-    private int isDelete = 0;
+    private boolean isDelete = false;
 
-    public int getIsDelete() {
+    public boolean getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(int isDelete) {
+    public void setIsDelete(boolean isDelete) {
         this.isDelete = isDelete;
     }
 
@@ -40,6 +40,24 @@ public class Participants implements Serializable {
         this.planID = planID;
         this.participantID = participantID;
         this.participantAuthorizationType = participantAuthorizationType;
+    }
+
+    public Participants(int planID){
+        this.planID=planID;
+    }
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
+    }
+
+    public Participants(int planID, int participantID){
+        this.planID=planID;
+
+        this.participantID=participantID;
     }
 
     public static long getSerialVersionUID() {
