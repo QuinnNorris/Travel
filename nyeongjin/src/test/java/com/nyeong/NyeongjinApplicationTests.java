@@ -83,11 +83,11 @@ public class NyeongjinApplicationTests {
 //
 //	}
 
-	@Autowired
-	RouteMapper routeMapper;
-
-	@Test
-	public void testRouteMapper(){
+//	@Autowired
+//	RouteMapper routeMapper;
+//
+//	@Test
+//	public void testRouteMapper(){
 
 		//routeMapper.insert(route);
 //		Route route=new Route(1);
@@ -95,8 +95,16 @@ public class NyeongjinApplicationTests {
 //		Assert.assertEquals(3,routes.size());
 //		Route route=new Route(4,1,0,3,Transportation.WALK,100,true,false);
 //		routeMapper.updateByRouteId(route);
-		Route route=new Route(0,0,0,3,Transportation.WALK,100,true,false);
-		Route route1=routeMapper.getRouteByOriginAndDestination(route);
-		Assert.assertEquals(5,route1.getRouteID());
+//		Route route=new Route(0,0,0,3,Transportation.WALK,100,true,false);
+//		Route route1=routeMapper.getRouteByOriginAndDestination(route);
+//		Assert.assertEquals(5,route1.getRouteID());
+//	}
+
+	@Autowired PinMapper pinMapper;
+
+	@Test
+	public void testPinMapper(){
+		Pin pin=new Pin(1,31.14,120.5,"东方明珠",new java.sql.Date(System.currentTimeMillis()),new java.sql.Date(System.currentTimeMillis()),PinStatus.WANTED,"");
+		pinMapper.insert(pin);
 	}
 }
