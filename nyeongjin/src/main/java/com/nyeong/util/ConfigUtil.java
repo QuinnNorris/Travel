@@ -1,9 +1,7 @@
 package com.nyeong.util;
 
-        import java.util.Date;
-
 /**
- * Title:  ConfigeUtil
+ * Title:  ConfigUtil
  * Description:
  *
  * @Author: Gwon NyeongJin
@@ -11,7 +9,7 @@ package com.nyeong.util;
  * @Version: 1.0
  **/
 
-public class ConfigeUtil {
+public class ConfigUtil {
 
     public static final Integer NOT_DELETE = 0;
 

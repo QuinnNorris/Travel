@@ -9,7 +9,7 @@ import com.nyeong.mapper.PinMapper;
 import com.nyeong.mapper.PlanMapper;
 import com.nyeong.mapper.PlatMapper;
 import com.nyeong.util.BaseJson;
-import com.nyeong.util.ConfigeUtil;
+import com.nyeong.util.ConfigUtil;
 import org.apache.commons.collections15.CollectionUtils;
 import org.apache.commons.collections15.Transformer;
 import org.slf4j.Logger;
@@ -65,7 +65,7 @@ public class PlanPinService extends BaseService {
 
         Participants participants = new Participants();
         participants.setParticipantID(userId);
-        participants.setIsDelete(ConfigeUtil.NOT_DELETE);
+        participants.setIsDelete(ConfigUtil.NOT_DELETE);
 
         baseJson.setObject(participantsMapper.getPlanIDByuserID(participants.getParticipantID()));
         List<Participants> participantsList = (List<Participants>) baseJson.getObject();
@@ -104,11 +104,11 @@ public class PlanPinService extends BaseService {
         if (getUserMsg(userId).getErrorCode().equals("1001"))
             return baseJson;
 
-        plan.setIsDelete(ConfigeUtil.NOT_DELETE);
+        plan.setIsDelete(ConfigUtil.NOT_DELETE);
         plan.setPlanCreatedDate(new Date());
         planMapper.insert(plan);
 
-        plat.setIsDelete(ConfigeUtil.NOT_DELETE);
+        plat.setIsDelete(ConfigUtil.NOT_DELETE);
         platMapper.insert(plat);
 
         return baseJson.setErrorCode("0000");
@@ -153,7 +153,7 @@ public class PlanPinService extends BaseService {
             return baseJson;
 
         for (Pin pin : pinList) {
-            pin.setIsDelete(ConfigeUtil.NOT_DELETE);
+            pin.setIsDelete(ConfigUtil.NOT_DELETE);
             pin.setAddTime(new Date());
             pinMapper.insert(pin);
         }
@@ -198,7 +198,7 @@ public class PlanPinService extends BaseService {
 
         Pin pin = new Pin();
         pin.setPlanID(planId);
-        pin.setIsDelete(ConfigeUtil.NOT_DELETE);
+        pin.setIsDelete(ConfigUtil.NOT_DELETE);
 
         List<Pin> pins = pinMapper.getByPlanId(pin);
         return baseJson.setObject(pins).setErrorCode("0000");

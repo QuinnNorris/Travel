@@ -5,7 +5,7 @@ import com.nyeong.entity.UserInfo;
 import com.nyeong.mapper.ParticipantMapper;
 import com.nyeong.mapper.UserInfoMapper;
 import com.nyeong.util.BaseJson;
-import com.nyeong.util.ConfigeUtil;
+import com.nyeong.util.ConfigUtil;
 import org.apache.commons.collections15.CollectionUtils;
 import org.apache.commons.collections15.Transformer;
 import org.slf4j.Logger;
@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -46,7 +45,7 @@ public class ParticipantService extends BaseService {
         Participants participants = new Participants();
         participants.setPlanID(planId);
         participants.setParticipantID(participantID);
-        participants.setIsDelete(ConfigeUtil.NOT_DELETE);
+        participants.setIsDelete(ConfigUtil.NOT_DELETE);
 
         participants = participantMapper.getByPlanIdAndParticipantId(participants);
 
@@ -69,7 +68,7 @@ public class ParticipantService extends BaseService {
 
         Participants participants = new Participants();
         participants.setPlanID(planId);
-        participants.setIsDelete(ConfigeUtil.NOT_DELETE);
+        participants.setIsDelete(ConfigUtil.NOT_DELETE);
 
         List<Participants> participantsList = participantMapper.getByPlanId(participants);
 
@@ -99,7 +98,7 @@ public class ParticipantService extends BaseService {
      */
     public BaseJson addParticipants(Participants participants) {
 
-        participants.setIsDelete(ConfigeUtil.NOT_DELETE);
+        participants.setIsDelete(ConfigUtil.NOT_DELETE);
         participantMapper.insert();
 
         return new BaseJson("0000");

@@ -4,7 +4,6 @@ package com.nyeong.controller;
 import com.nyeong.entity.Plat;
 import com.nyeong.service.PlatRouteService;
 import com.nyeong.util.BaseJson;
-import com.nyeong.util.ConfigeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

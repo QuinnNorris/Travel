@@ -5,7 +5,7 @@ import com.nyeong.entity.Route;
 import com.nyeong.mapper.PlatMapper;
 import com.nyeong.mapper.RouteMapper;
 import com.nyeong.util.BaseJson;
-import com.nyeong.util.ConfigeUtil;
+import com.nyeong.util.ConfigUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class PlatRouteService {
 
         Plat plat = new Plat();
         plat.setMapID(mapId);
-        plat.setIsDelete(ConfigeUtil.NOT_DELETE);
+        plat.setIsDelete(ConfigUtil.NOT_DELETE);
 
         plat = platMapper.getByMapId(plat);
         return baseJson.setObject(plat).setErrorCode("0000");
@@ -105,7 +105,7 @@ public class PlatRouteService {
         Route route = new Route();
         route.setOrigin(pinBegId);
         route.setDestination(pinEndId);
-        route.setIsDelete(ConfigeUtil.NOT_DELETE);
+        route.setIsDelete(ConfigUtil.NOT_DELETE);
 
         route = routeMapper.getRouteByOriginAndDestination(route);
         return baseJson.setObject(route).setErrorCode("0000");
@@ -125,7 +125,7 @@ public class PlatRouteService {
 
         Route route = new Route();
         route.setPlanID(planId);
-        route.setIsDelete(ConfigeUtil.NOT_DELETE);
+        route.setIsDelete(ConfigUtil.NOT_DELETE);
 
         List<Route> routes = routeMapper.getRoutesByPlanId(route);
         return baseJson.setObject(routes).setErrorCode("0000");
