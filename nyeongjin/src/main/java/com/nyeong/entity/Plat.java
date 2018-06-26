@@ -1,6 +1,7 @@
 package com.nyeong.entity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 /**
@@ -24,7 +25,6 @@ public class Plat  implements Serializable {
     private boolean mapIsAbroad;
 
     private int mapZoom;
-
 
     private boolean isDelete = false;
 

@@ -34,8 +34,6 @@ public class UserInfo implements Serializable {
 
     private UserStatus userStatus;
 
-
-
     private boolean isDelete = false;
 
     public boolean getIsDelete() {
@@ -47,7 +45,6 @@ public class UserInfo implements Serializable {
     }
 
     public UserInfo() {
-
     }
 
     public UserInfo(int userID, String userName, String password, String phone, String email, UserStatus userStatus, String nickName) {

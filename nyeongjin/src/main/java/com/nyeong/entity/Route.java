@@ -25,14 +25,6 @@ public class Route implements Serializable {
 
     private int destination;
 
-    public boolean isDelete() {
-        return isDelete;
-    }
-
-    public void setDelete(boolean delete) {
-        isDelete = delete;
-    }
-
     private Transportation routeTransportation;
 
     private int routeTime;
@@ -95,6 +87,7 @@ public class Route implements Serializable {
         this.routeTime = routeTime;
         this.routeIsChosen = routeIsChosen;
     }
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
@@ -155,6 +148,14 @@ public class Route implements Serializable {
         this.routeIsChosen = routeIsChosen;
     }
 
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -166,13 +167,14 @@ public class Route implements Serializable {
                 getDestination() == route.getDestination() &&
                 getRouteTime() == route.getRouteTime() &&
                 isRouteIsChosen() == route.isRouteIsChosen() &&
+                isDelete() == route.isDelete() &&
                 getRouteTransportation() == route.getRouteTransportation();
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getRouteID(), getPlanID(), getOrigin(), getDestination(), getRouteTransportation(), getRouteTime(), isRouteIsChosen());
+        return Objects.hash(getRouteID(), getPlanID(), getOrigin(), getDestination(), getRouteTransportation(), getRouteTime(), isRouteIsChosen(), isDelete());
     }
 
     @Override
@@ -185,6 +187,7 @@ public class Route implements Serializable {
                 ", routeTransportation=" + routeTransportation +
                 ", routeTime=" + routeTime +
                 ", routeIsChosen=" + routeIsChosen +
+                ", isDelete=" + isDelete +
                 '}';
     }
 }
