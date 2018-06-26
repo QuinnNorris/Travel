@@ -22,7 +22,7 @@ public interface PinMapper {
      * @param pin
      * @return
      */
-    @Insert("insert into \"pin\"(\"planID\",\"pinLatitude\",\"pinLongitude\",\"pinTitle\",\"pinArrival\",\"pinDeparture\",\"pinStatus\",\"pinNotes\",\"isDelete\") values (#{planID},#{pinLatitude},#{pinLongitude},#{pinTitle},#{pinArrival},#{pinDeparture},CAST(#{pinStatus} as \"enum_pinStatus\"),#{pinNotes},#{isDelete})")
+    @Insert("insert into \"pin\"(\"planID\",\"pinLatitude\",\"pinLongitude\",\"pinTitle\",\"pinArrival\",\"pinDeparture\",\"pinStatus\",\"pinNotes\",\"isDelete\",\"the_gemo\") values (#{planID},#{pinLatitude},#{pinLongitude},#{pinTitle},#{pinArrival},#{pinDeparture},CAST(#{pinStatus} as \"enum_pinStatus\"),#{pinNotes},#{isDelete},ST_GeomFromText('POINT(#{pinLatitude} #{pinLongitude})',4326))")
     int insert(Pin pin);
 
     @Select("select * from pin where \"pinID\"=#{id} and \"isDelete\"=false")
