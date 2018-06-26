@@ -11,6 +11,6 @@ package com.nyeong.util;
 
 public class ConfigUtil {
 
-    public static final Integer NOT_DELETE = 0;
+    public static final Boolean NOT_DELETE = false;
 
 }

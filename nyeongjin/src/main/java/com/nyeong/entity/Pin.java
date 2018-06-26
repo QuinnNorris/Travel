@@ -4,6 +4,7 @@ import com.nyeong.enums.PinStatus;
 
 import javax.print.attribute.standard.PrinterURI;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -20,6 +21,18 @@ public class Pin implements Serializable {
 
     private int pinID;
 
+    public Pin(int pinID, int planID, double pinLatitude, double pinLongitude, String pinTitle, Date pinArrival, Date pinDeparture, PinStatus pinStatus, String pinNotes) {
+        this.pinID = pinID;
+        this.planID = planID;
+        this.pinLatitude = pinLatitude;
+        this.pinLongitude = pinLongitude;
+        this.pinTitle = pinTitle;
+        this.pinArrival = pinArrival;
+        this.pinDeparture = pinDeparture;
+        this.pinStatus = pinStatus;
+        this.pinNotes = pinNotes;
+    }
+
     private int planID;
 
     private double pinLatitude;
@@ -32,6 +45,51 @@ public class Pin implements Serializable {
 
     private Date pinDeparture;
 
+    public Pin(){
+
+    }
+
+    public Pin(int planID){
+        this.planID=planID;
+    }
+
+    public Pin(int pinID,int planID){
+        this.pinID=pinID;
+        this.planID=planID;
+    }
+
+    public Pin( int planID, double pinLatitude, double pinLongitude, String pinTitle, Date pinArrival, Date pinDeparture, PinStatus pinStatus, String pinNotes) {
+        this.planID = planID;
+        this.pinLatitude = pinLatitude;
+        this.pinLongitude = pinLongitude;
+        this.pinTitle = pinTitle;
+        this.pinArrival = pinArrival;
+        this.pinDeparture = pinDeparture;
+        this.pinStatus = pinStatus;
+        this.pinNotes = pinNotes;
+    }
+
+    public Pin(int pinID, int planID, double pinLatitude, double pinLongitude, String pinTitle, Date pinArrival, Date pinDeparture, PinStatus pinStatus, String pinNotes, boolean isDelete) {
+        this.pinID = pinID;
+        this.planID = planID;
+        this.pinLatitude = pinLatitude;
+        this.pinLongitude = pinLongitude;
+        this.pinTitle = pinTitle;
+        this.pinArrival = pinArrival;
+        this.pinDeparture = pinDeparture;
+        this.pinStatus = pinStatus;
+        this.pinNotes = pinNotes;
+        this.isDelete = isDelete;
+    }
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
+    }
+
     private PinStatus pinStatus;
 
     private String pinNotes;
@@ -40,7 +98,7 @@ public class Pin implements Serializable {
     private Date updateTime;
 
 
-    private int isDelete = 0;
+    private boolean isDelete = false;
 
     public Date getAddTime() {
         return addTime;
@@ -58,11 +116,11 @@ public class Pin implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public int getIsDelete() {
+    public boolean getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(int isDelete) {
+    public void setIsDelete(boolean isDelete) {
         this.isDelete = isDelete;
     }
 

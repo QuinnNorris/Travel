@@ -1,10 +1,10 @@
 package com.nyeong.mapper;
 
+import com.nyeong.entity.Participants;
 import com.nyeong.entity.Plan;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 /**
  * Title:  PlatMapper
@@ -19,8 +19,19 @@ import org.apache.ibatis.annotations.Update;
 @Mapper
 public interface ParticipantMapper {
 
-    @Select("select \"planID\" from participants where \"userID\"=#{userID} and \"isDelete\"=false")
-    int getPlanIDByuserID(@Param("userID") Integer userID);
+    @Select("select \"planID\" from participants where \"participantID\"=#{participantID} and \"isDelete\"=false")
+    int getPlanIDByuserID(@Param("participantID") Integer userID);
 
+    @Select("select * from participants where \"planID\"=#{planID} and \"isDelete\"=false" )
+    List<Participants> getByPlanId(Participants participants);
+
+    @Select("select * from participants where \"planID\"=#{planID} and \"participantID\"=#{participantID} and \"isDelete\"=false")
+    Participants getByPlanIdAndParticipantId(Participants participants);
+
+    @Insert("insert into participants(\"planID\",\"participantID\",\"participantAuthorization\",\"isDelete\")values(#{planID},#{participantID},CAST(#{participantAuthorizationType} as \"enum_authorization\"),#{isDelete})")
+    int insert(Participants participants);
+
+    @Update("update participants set \"planID\"=#{planID},\"participantAuthorization\"=CAST(#{participantAuthorizationType} as \"enum_authorization\"),\"isDelete\"=#{isDelete} where \"participantID\"=#{participantID}")
+    int updateParticipants(Participants participants);
 
 }

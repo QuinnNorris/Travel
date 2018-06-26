@@ -22,8 +22,6 @@ public class Plan implements Serializable {
 
     private int planID;
 
-    private int mapID;
-
     private String planName;
 
     private PlanType planType;
@@ -32,25 +30,43 @@ public class Plan implements Serializable {
 
     private Date planModifiedDate;
 
-    private Transportation defaultTransportation;
-
-
-    private int isDelete = 0;
-
-    public int getIsDelete() {
+    public boolean isDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(int isDelete) {
+    public void setDelete(boolean delete) {
+        isDelete = delete;
+    }
+
+    private Transportation defaultTransportation;
+
+    private boolean isDelete = false;
+
+    public boolean getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(boolean isDelete) {
         this.isDelete = isDelete;
     }
 
     public Plan() {
     }
 
-    public Plan(int planID, int mapID, String planName, PlanType planType, Date planCreatedDate, Date planModifiedDate, Transportation defaultTransportation) {
+    public Plan(String planName) {
+        this.planName = planName;
+    }
+
+    public Plan(String planName, PlanType planType, Date planCreatedDate, Date planModifiedDate, Transportation defaultTransportation) {
+        this.planName = planName;
+        this.planType = planType;
+        this.planCreatedDate = planCreatedDate;
+        this.planModifiedDate = planModifiedDate;
+        this.defaultTransportation = defaultTransportation;
+    }
+
+    public Plan(int planID, String planName, PlanType planType, Date planCreatedDate, Date planModifiedDate, Transportation defaultTransportation) {
         this.planID = planID;
-        this.mapID = mapID;
         this.planName = planName;
         this.planType = planType;
         this.planCreatedDate = planCreatedDate;
@@ -68,14 +84,6 @@ public class Plan implements Serializable {
 
     public void setPlanID(int planID) {
         this.planID = planID;
-    }
-
-    public int getMapID() {
-        return mapID;
-    }
-
-    public void setMapID(int mapID) {
-        this.mapID = mapID;
     }
 
     public String getPlanName() {
@@ -120,7 +128,6 @@ public class Plan implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Plan that = (Plan) o;
         return getPlanID() == that.getPlanID() &&
-                getMapID() == that.getMapID() &&
                 Objects.equals(getPlanName(), that.getPlanName()) &&
                 getPlanType() == that.getPlanType() &&
                 Objects.equals(getPlanCreatedDate(), that.getPlanCreatedDate()) &&
@@ -131,7 +138,7 @@ public class Plan implements Serializable {
     @Override
     public int hashCode() {
 
-        return Objects.hash(getPlanID(), getMapID(), getPlanName(), getPlanType(), getPlanCreatedDate(), getPlanModifiedDate(), getDefaultTransportation());
+        return Objects.hash(getPlanID(), getPlanName(), getPlanType(), getPlanCreatedDate(), getPlanModifiedDate(), getDefaultTransportation());
     }
 
     public void setDefaultTransportation(Transportation defaultTransportation) {
@@ -143,7 +150,6 @@ public class Plan implements Serializable {
     public String toString() {
         return "Plan{" +
                 "planID=" + planID +
-                ", mapID=" + mapID +
                 ", planName='" + planName + '\'' +
                 ", planType=" + planType +
                 ", planCreatedDate=" + planCreatedDate +

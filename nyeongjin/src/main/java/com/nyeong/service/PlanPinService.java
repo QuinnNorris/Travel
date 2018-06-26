@@ -33,7 +33,7 @@ import java.util.List;
 @Service
 public class PlanPinService extends BaseService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PlanPlanPinService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PlanPinService.class);
 
     @Autowired
     private PlanMapper planMapper;
@@ -85,8 +85,10 @@ public class PlanPinService extends BaseService {
                         return planId;
                     }
                 });
-
-        List<Plan> plans = planMapper.getByPlanIds(planIds);
+        List<Plan> plans =  new ArrayList<>();
+        for(int planId :planIds) {
+             plans.add(planMapper.getByPlanIds(planId));
+        }
         return baseJson.setObject(plans).setErrorCode("0000");
     }
 

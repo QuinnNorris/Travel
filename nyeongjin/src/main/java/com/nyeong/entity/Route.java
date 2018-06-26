@@ -25,24 +25,46 @@ public class Route implements Serializable {
 
     private int destination;
 
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
+    }
+
     private Transportation routeTransportation;
 
     private int routeTime;
 
     private boolean routeIsChosen;
 
+    private boolean isDelete = false;
 
-    private int isDelete = 0;
-
-    public int getIsDelete() {
+    public boolean getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(int isDelete) {
+    public void setIsDelete(boolean isDelete) {
         this.isDelete = isDelete;
     }
 
     public Route() {
+    }
+
+    public Route(int planID){
+        this.planID=planID;
+    }
+
+    public Route(int routeID, int planID, int origin, int destination, Transportation routeTransportation, int routeTime, boolean routeIsChosen, boolean isDelete) {
+        this.routeID = routeID;
+        this.planID = planID;
+        this.origin = origin;
+        this.destination = destination;
+        this.routeTransportation = routeTransportation;
+        this.routeTime = routeTime;
+        this.routeIsChosen = routeIsChosen;
+        this.isDelete = isDelete;
     }
 
     public Route(int routeID, int planID, int origin, int destination, Transportation routeTransportation, int routeTime, boolean routeIsChosen) {
@@ -55,6 +77,24 @@ public class Route implements Serializable {
         this.routeIsChosen = routeIsChosen;
     }
 
+    public Route(int planID, int origin, int destination, Transportation routeTransportation, int routeTime, boolean routeIsChosen, boolean isDelete) {
+        this.planID = planID;
+        this.origin = origin;
+        this.destination = destination;
+        this.routeTransportation = routeTransportation;
+        this.routeTime = routeTime;
+        this.routeIsChosen = routeIsChosen;
+        this.isDelete = isDelete;
+    }
+
+    public Route(int planID, int origin, int destination, Transportation routeTransportation, int routeTime, boolean routeIsChosen) {
+        this.planID = planID;
+        this.origin = origin;
+        this.destination = destination;
+        this.routeTransportation = routeTransportation;
+        this.routeTime = routeTime;
+        this.routeIsChosen = routeIsChosen;
+    }
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
